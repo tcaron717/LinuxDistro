@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=tAI Assistant
+Comment=Desktop interface for the tAI Linux assistant
+Exec=assistant-gui
+Icon=utilities-terminal
+Terminal=false
+Categories=Utility;System;
+StartupNotify=true

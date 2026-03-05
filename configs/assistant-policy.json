@@ -1,0 +1,25 @@
+{
+  "actions": {
+    "system_update_check": {
+      "privileged": false
+    },
+    "list_upgrades": {
+      "privileged": false
+    },
+    "disk_usage_summary": {
+      "privileged": false
+    },
+    "network_summary": {
+      "privileged": false
+    },
+    "ai_query": {
+      "privileged": false
+    },
+    "install_package": {
+      "privileged": true
+    },
+    "remove_package": {
+      "privileged": true
+    }
+  }
+}

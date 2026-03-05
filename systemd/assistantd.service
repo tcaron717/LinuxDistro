@@ -1,0 +1,14 @@
+[Unit]
+Description=AI-First Assistant Daemon
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/assistantd --socket-path /run/assistantd.sock --policy-path /etc/aifirst/assistant-policy.json --assistant-config-path /etc/aifirst/aifirst-ai.json --audit-log /var/log/aifirst/assistantd.log
+Restart=on-failure
+RestartSec=2
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,13 @@
+{
+  "assistant_permissions": "full_access",
+  "default_profile": "local-ollama",
+  "profiles": {
+    "local-ollama": {
+      "model": "llama3.2",
+      "ollama_base_url": "http://127.0.0.1:11434",
+      "provider": "ollama"
+    }
+  },
+  "system_prompt": "You are a Linux assistant for an AI-first Fedora distribution. Prioritize safe, reproducible commands and explain briefly.",
+  "timeout_sec": 60
+}

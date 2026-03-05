@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aifirst-ai"
+version = "0.1.0"
+description = "AI-first distro CLI assistant tool"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "AI First Fedora Team" }]
+license = { text = "MIT" }
+dependencies = []
+
+[project.scripts]
+aifirst-ai = "aifirst_ai.cli:main"
+
+[tool.setuptools]
+packages = ["aifirst_ai"]

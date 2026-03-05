@@ -1,0 +1,18 @@
+{
+  "default_profile": "openai-prod",
+  "profiles": {
+    "local-ollama": {
+      "model": "llama3.2",
+      "ollama_base_url": "http://127.0.0.1:11434",
+      "provider": "ollama"
+    },
+    "openai-prod": {
+      "model": "gpt-4o-mini",
+      "openai_api_key_env": "OPENAI_API_KEY",
+      "openai_base_url": "https://api.openai.com/v1",
+      "provider": "openai_compatible"
+    }
+  },
+  "system_prompt": "You are a Linux assistant for an AI-first Fedora distribution. Prioritize safe, reproducible commands and explain briefly.",
+  "timeout_sec": 60
+}

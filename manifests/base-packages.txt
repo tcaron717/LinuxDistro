@@ -1,0 +1,26 @@
+# Base tooling for maintainable Fedora spin
+NetworkManager-tui
+ansible
+curl
+distrobox
+dnf-automatic
+fedora-workstation-repositories
+flatpak
+git
+git-lfs
+gnome-terminal
+htop
+jq
+make
+openssh-clients
+podman
+python3
+python3-devel
+python3-pip
+python3-virtualenv
+rsync
+shellcheck
+tmux
+vim-enhanced
+wget
+zsh
