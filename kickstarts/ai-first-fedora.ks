@@ -35,6 +35,7 @@ cmake
 curl
 distrobox
 dnf-automatic
+dracut-live
 fedora-workstation-repositories
 flatpak
 gcc
