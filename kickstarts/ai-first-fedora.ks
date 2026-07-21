@@ -1,5 +1,4 @@
 #version=F44
-text
 lang en_US.UTF-8
 keyboard us
 timezone UTC --utc
