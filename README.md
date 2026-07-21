@@ -15,7 +15,7 @@ This repository scaffolds a Fedora-based Linux spin focused on AI tooling and an
 - `manifests/base-packages.txt`: Baseline package list
 - `manifests/ai-packages.txt`: AI/dev tooling package list
 - `scripts/sync-kickstart-packages.sh`: Sync manifest packages into Kickstart
-- `scripts/build-iso.sh`: Build ISO with `livemedia-creator`
+- `scripts/build-iso.sh`: Build Fedora 44 ISO with `livemedia-creator` for `x86_64` or `aarch64`
 - `scripts/create-local-repo.sh`: Build local RPM metadata
 - `scripts/validate-kickstart.sh`: Validate Kickstart syntax and required tools
 - `assistant/assistantd.py`: Local assistant daemon over Unix socket
@@ -54,13 +54,16 @@ sudo dnf install -y \
 ./scripts/validate-kickstart.sh
 ```
 
-3. Build ISO (requires sudo/root):
+3. Build ISO (requires sudo/root). Build each architecture on a matching Fedora
+   build host; `livemedia-creator` does not cross-build these images:
 
 ```bash
-sudo ./scripts/build-iso.sh
+make build-iso ARCH=x86_64
+make build-iso ARCH=aarch64
 ```
 
-Output defaults to `out/iso/`.
+The default architecture is the build host architecture. Outputs are written to
+`out/iso/x86_64/` and `out/iso/aarch64/` respectively.
 
 ## Assistant quick start
 

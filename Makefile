@@ -6,7 +6,7 @@ help:
 	@echo "Targets:"
 	@echo "  make sync-packages            # Sync manifests into kickstart"
 	@echo "  make validate                 # Validate kickstart syntax"
-	@echo "  make build-iso                # Build installable ISO (sudo required)"
+	@echo "  make build-iso [ARCH=...]     # Build Fedora 44 ISO for x86_64 or aarch64 (sudo required)"
 	@echo "  make create-repo REPO=path    # Create/refresh local RPM repo metadata"
 	@echo "  make vm-smoke [ISO=path]      # Boot ISO in QEMU"
 	@echo "  make install-assistant        # Install assistantd/assistant-cli on host"

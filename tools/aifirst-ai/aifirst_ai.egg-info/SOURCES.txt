@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+aifirst_ai/__init__.py
+aifirst_ai/cli.py
+aifirst_ai/config.py
+aifirst_ai/providers.py
+aifirst_ai.egg-info/PKG-INFO
+aifirst_ai.egg-info/SOURCES.txt
+aifirst_ai.egg-info/dependency_links.txt
+aifirst_ai.egg-info/entry_points.txt
+aifirst_ai.egg-info/top_level.txt
