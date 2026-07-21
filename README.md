@@ -137,6 +137,8 @@ make build-aifirst-ai-rpm
 ```
 
 Copy generated RPMs into `out/repo/`, run `make create-repo REPO=out/repo`, then rebuild your ISO.
+The ISO build script automatically adds this repository for `aifirst-ai`; no
+manual Kickstart edit is needed.
 
 ## Next recommended step
 

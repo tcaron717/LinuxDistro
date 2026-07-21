@@ -4,6 +4,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 KS_FILE="${ROOT_DIR}/kickstarts/ai-first-fedora.ks"
+LOCAL_REPO="${ROOT_DIR}/out/repo"
 RELEASEVER="${RELEASEVER:-44}"
 ARCH="${ARCH:-$(uname -m)}"
 
@@ -49,7 +50,24 @@ if [[ -e "${OUT_DIR}" ]]; then
   exit 1
 fi
 
+if [[ ! -f "${LOCAL_REPO}/repodata/repomd.xml" ]] || ! compgen -G "${LOCAL_REPO}/aifirst-ai-*.rpm" >/dev/null; then
+  echo "Missing local aifirst-ai RPM repository: ${LOCAL_REPO}" >&2
+  echo "Run 'make build-aifirst-ai-rpm', copy the RPM into out/repo/, and run 'make create-repo REPO=out/repo'." >&2
+  exit 1
+fi
+
 mkdir -p "$(dirname "${OUT_DIR}")"
+
+BUILD_KS="$(mktemp "${TMPDIR:-/tmp}/aifirst-fedora.XXXXXX.ks")"
+trap 'rm -f "${BUILD_KS}"' EXIT
+
+awk -v repo_path="${LOCAL_REPO}" '
+  /# LOCAL_AIFIRST_REPO/ {
+    print "repo --name=ai-first-local --baseurl=file://" repo_path
+    next
+  }
+  { print }
+' "${KS_FILE}" > "${BUILD_KS}"
 
 echo "Building Fedora ${RELEASEVER} ${ARCH} ISO from ${KS_FILE}"
 echo "Output dir: ${OUT_DIR}"
@@ -57,7 +75,7 @@ echo "Output dir: ${OUT_DIR}"
 sudo livemedia-creator \
   --make-iso \
   --no-virt \
-  --ks "${KS_FILE}" \
+  --ks "${BUILD_KS}" \
   --project "AIFirstFedora-${ARCH}" \
   --releasever "${RELEASEVER}" \
   --volid "AIFEDORA-${RELEASEVER}-${ARCH}" \

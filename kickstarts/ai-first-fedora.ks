@@ -19,8 +19,8 @@ url --url="https://download.fedoraproject.org/pub/fedora/linux/releases/$release
 repo --name=fedora --baseurl="https://download.fedoraproject.org/pub/fedora/linux/releases/$releasever/Everything/$basearch/os/"
 repo --name=updates --baseurl="https://download.fedoraproject.org/pub/fedora/linux/updates/$releasever/Everything/$basearch/"
 
-# Example custom local repo:
-# repo --name=ai-first-local --baseurl=file:///run/install/repo/local-rpms
+# The local `aifirst-ai` repository is injected by scripts/build-iso.sh.
+# LOCAL_AIFIRST_REPO
 
 %packages
 @workstation-product-environment
