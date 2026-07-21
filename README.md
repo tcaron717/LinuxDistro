@@ -65,6 +65,9 @@ make build-iso ARCH=aarch64
 The default architecture is the build host architecture. Outputs are written to
 `out/iso/x86_64/` and `out/iso/aarch64/` respectively.
 
+The build runs Anaconda with `--no-virt`; use a dedicated Fedora VM, not a
+workstation containing data you need to protect.
+
 ## Assistant quick start
 
 Run daemon in development mode:

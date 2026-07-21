@@ -43,13 +43,20 @@ need_cmd() {
 need_cmd livemedia-creator
 need_cmd qemu-img
 
-mkdir -p "${OUT_DIR}"
+if [[ -e "${OUT_DIR}" ]]; then
+  echo "Output path already exists: ${OUT_DIR}" >&2
+  echo "Move or remove it before rebuilding so livemedia-creator can create a fresh result directory." >&2
+  exit 1
+fi
+
+mkdir -p "$(dirname "${OUT_DIR}")"
 
 echo "Building Fedora ${RELEASEVER} ${ARCH} ISO from ${KS_FILE}"
 echo "Output dir: ${OUT_DIR}"
 
 sudo livemedia-creator \
   --make-iso \
+  --no-virt \
   --ks "${KS_FILE}" \
   --project "AIFirstFedora-${ARCH}" \
   --releasever "${RELEASEVER}" \
