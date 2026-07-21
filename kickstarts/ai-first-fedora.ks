@@ -10,7 +10,8 @@ services --enabled=sshd,NetworkManager
 bootloader --location=mbr --timeout=1
 zerombr
 clearpart --all --initlabel
-autopart --type=lvm
+reqpart
+part / --fstype="ext4" --size=8192 --grow
 reboot
 
 # Core Fedora repos. DNF expands $releasever and $basearch for the build host.
