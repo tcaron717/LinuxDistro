@@ -1,4 +1,4 @@
-#version=F40
+#version=F44
 text
 lang en_US.UTF-8
 keyboard us
@@ -14,10 +14,10 @@ clearpart --all --initlabel
 autopart --type=lvm
 reboot
 
-# Core Fedora repos (adjust releasever if needed)
-url --url="https://download.fedoraproject.org/pub/fedora/linux/releases/40/Everything/x86_64/os/"
-repo --name=fedora --baseurl=https://download.fedoraproject.org/pub/fedora/linux/releases/40/Everything/x86_64/os/
-repo --name=updates --baseurl=https://download.fedoraproject.org/pub/fedora/linux/updates/40/Everything/x86_64/
+# Core Fedora repos. DNF expands $releasever and $basearch for the build host.
+url --url="https://download.fedoraproject.org/pub/fedora/linux/releases/$releasever/Everything/$basearch/os/"
+repo --name=fedora --baseurl="https://download.fedoraproject.org/pub/fedora/linux/releases/$releasever/Everything/$basearch/os/"
+repo --name=updates --baseurl="https://download.fedoraproject.org/pub/fedora/linux/updates/$releasever/Everything/$basearch/"
 
 # Example custom local repo:
 # repo --name=ai-first-local --baseurl=file:///run/install/repo/local-rpms

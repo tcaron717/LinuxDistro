@@ -1,0 +1,2 @@
+[console_scripts]
+aifirst-ai = aifirst_ai.cli:main
