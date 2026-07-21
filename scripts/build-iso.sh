@@ -32,7 +32,6 @@ if [[ "${ARCH}" != "${HOST_ARCH}" ]]; then
 fi
 
 OUT_DIR="${ROOT_DIR}/out/iso/${ARCH}"
-CACHE_DIR="${ROOT_DIR}/out/cache/${ARCH}"
 
 need_cmd() {
   if ! command -v "$1" >/dev/null 2>&1; then
@@ -44,7 +43,7 @@ need_cmd() {
 need_cmd livemedia-creator
 need_cmd qemu-img
 
-mkdir -p "${OUT_DIR}" "${CACHE_DIR}"
+mkdir -p "${OUT_DIR}"
 
 echo "Building Fedora ${RELEASEVER} ${ARCH} ISO from ${KS_FILE}"
 echo "Output dir: ${OUT_DIR}"
@@ -56,7 +55,6 @@ sudo livemedia-creator \
   --releasever "${RELEASEVER}" \
   --volid "AIFEDORA-${RELEASEVER}-${ARCH}" \
   --resultdir "${OUT_DIR}" \
-  --cache "${CACHE_DIR}" \
   --image-name "aifirst-fedora-${RELEASEVER}-${ARCH}.qcow2"
 
 echo "ISO build complete. Check ${OUT_DIR}"
