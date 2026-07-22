@@ -11,7 +11,7 @@ bootloader --location=mbr --timeout=1
 zerombr
 clearpart --all --initlabel
 reqpart
-part / --fstype="ext4" --size=8192 --grow
+part / --fstype="ext4" --size=16384 --grow
 reboot
 
 # Core Fedora repos. DNF expands $releasever and $basearch for the build host.
