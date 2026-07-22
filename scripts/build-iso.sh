@@ -44,6 +44,16 @@ need_cmd() {
 need_cmd livemedia-creator
 need_cmd qemu-img
 
+ANACONDA_PID_FILE="/run/user/0/anaconda.pid"
+if [[ -e "${ANACONDA_PID_FILE}" ]]; then
+  ANACONDA_PID="$(sudo cat "${ANACONDA_PID_FILE}" 2>/dev/null || true)"
+  if [[ "${ANACONDA_PID}" =~ ^[0-9]+$ ]] && [[ -r "/proc/${ANACONDA_PID}/cmdline" ]] && tr '\0' ' ' < "/proc/${ANACONDA_PID}/cmdline" | grep -q anaconda; then
+    echo "Anaconda is already running with PID ${ANACONDA_PID}; stop it before rebuilding." >&2
+    exit 1
+  fi
+  sudo rm -f "${ANACONDA_PID_FILE}"
+fi
+
 if [[ -e "${OUT_DIR}" ]]; then
   echo "Output path already exists: ${OUT_DIR}" >&2
   echo "Move or remove it before rebuilding so livemedia-creator can create a fresh result directory." >&2
