@@ -9,6 +9,7 @@ fedora-workstation-repositories
 flatpak
 git
 git-lfs
+gnome-initial-setup
 gnome-terminal
 htop
 jq

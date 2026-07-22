@@ -4,6 +4,7 @@ keyboard us
 timezone UTC --utc
 network --bootproto=dhcp --device=link --activate --onboot=on
 rootpw --lock
+firstboot --enable
 firewall --enabled --service=ssh
 selinux --enforcing
 services --enabled=sshd,NetworkManager
@@ -42,6 +43,7 @@ gcc
 gcc-c++
 git
 git-lfs
+gnome-initial-setup
 gnome-terminal
 golang
 htop
