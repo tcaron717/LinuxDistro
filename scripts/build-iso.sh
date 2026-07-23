@@ -84,12 +84,13 @@ echo "Output dir: ${OUT_DIR}"
 
 sudo livemedia-creator \
   --make-iso \
+  --iso-only \
+  --iso-name "aifirst-fedora-${RELEASEVER}-${ARCH}.iso" \
   --no-virt \
   --ks "${BUILD_KS}" \
   --project "AIFirstFedora-${ARCH}" \
   --releasever "${RELEASEVER}" \
   --volid "AIFEDORA-${RELEASEVER}-${ARCH}" \
-  --resultdir "${OUT_DIR}" \
-  --image-name "aifirst-fedora-${RELEASEVER}-${ARCH}.qcow2"
+  --resultdir "${OUT_DIR}"
 
 echo "ISO build complete. Check ${OUT_DIR}"
