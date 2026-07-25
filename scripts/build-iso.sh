@@ -69,6 +69,7 @@ fi
 
 mkdir -p "$(dirname "${OUT_DIR}")"
 BOOT_DIR="$(mktemp -d "${TMPDIR:-/var/tmp}/aifirst-lorax-${ARCH}.XXXXXX")"
+rmdir "${BOOT_DIR}"
 
 FEDORA_BASE_URL="https://download.fedoraproject.org/pub/fedora/linux/releases/${RELEASEVER}/Everything/${ARCH}/os/"
 FEDORA_UPDATES_URL="https://download.fedoraproject.org/pub/fedora/linux/updates/${RELEASEVER}/Everything/${ARCH}/"
