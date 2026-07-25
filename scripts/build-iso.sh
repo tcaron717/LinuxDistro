@@ -42,6 +42,7 @@ need_cmd() {
 }
 
 need_cmd livemedia-creator
+need_cmd lorax
 need_cmd qemu-img
 
 ANACONDA_PID_FILE="/run/user/0/anaconda.pid"
@@ -67,6 +68,26 @@ if [[ ! -f "${LOCAL_REPO}/repodata/repomd.xml" ]] || ! compgen -G "${LOCAL_REPO}
 fi
 
 mkdir -p "$(dirname "${OUT_DIR}")"
+BOOT_DIR="$(mktemp -d "${TMPDIR:-/var/tmp}/aifirst-lorax-${ARCH}.XXXXXX")"
+
+FEDORA_BASE_URL="https://download.fedoraproject.org/pub/fedora/linux/releases/${RELEASEVER}/Everything/${ARCH}/os/"
+FEDORA_UPDATES_URL="https://download.fedoraproject.org/pub/fedora/linux/updates/${RELEASEVER}/Everything/${ARCH}/"
+
+echo "Building Anaconda boot ISO with lorax"
+sudo lorax \
+  --product "AIFirstFedora" \
+  --version "${RELEASEVER}" \
+  --release "${RELEASEVER}" \
+  --buildarch "${ARCH}" \
+  --source "${FEDORA_BASE_URL}" \
+  --source "${FEDORA_UPDATES_URL}" \
+  "${BOOT_DIR}"
+
+BOOT_ISO="${BOOT_DIR}/images/boot.iso"
+if [[ ! -f "${BOOT_ISO}" ]]; then
+  echo "lorax did not create the expected boot ISO: ${BOOT_ISO}" >&2
+  exit 1
+fi
 
 BUILD_KS="$(mktemp "${TMPDIR:-/tmp}/aifirst-fedora.XXXXXX.ks")"
 trap 'rm -f "${BUILD_KS}"' EXIT
@@ -87,6 +108,7 @@ sudo livemedia-creator \
   --iso-only \
   --iso-name "aifirst-fedora-${RELEASEVER}-${ARCH}.iso" \
   --no-virt \
+  --iso "${BOOT_ISO}" \
   --ks "${BUILD_KS}" \
   --project "AIFirstFedora-${ARCH}" \
   --releasever "${RELEASEVER}" \

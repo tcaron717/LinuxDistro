@@ -36,8 +36,8 @@ Install required tools:
 
 ```bash
 sudo dnf install -y \
-  pykickstart lorax-lmc-novirt livemedia-creator \
-  qemu-img qemu-system-x86 xorriso createrepo_c
+  pykickstart lorax lorax-lmc-novirt livemedia-creator \
+  qemu-img qemu-system-x86 qemu-system-aarch64 xorriso createrepo_c
 ```
 
 ## Quick start
